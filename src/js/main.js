@@ -1,6 +1,6 @@
 import "/src/css/style.scss";
 
-const toDoApp = document.getElementById("toDoApp");
+const toDoApp = document.getElementById("header");
 const toDoHeader = document.createElement("h1");
 toDoHeader.innerHTML="To-Do List &#x1F4DD";
 toDoApp.appendChild(toDoHeader);
@@ -18,45 +18,53 @@ const task2 = new Todo (true,"Handla till maten");
 const task3 = new Todo (true,"Hämta nycklarna på kontoret");
 const task4 = new Todo (true,"Baka en tårta till Peter");
 
-const toDoList = [task1, task2, task3, task4];
-const haveDone = [];
+let toDoList = [task1, task2, task3, task4];
+let haveDone = [];
 
-const listContainer = document.getElementById("section__ToDo")
-const listDoneContainer = document.getElementById("section__Done");
+const listContainer = document.getElementById("tasks__toDo")
+const listDoneContainer = document.getElementById("tasks__done");
 const toDoContainer = document.createElement("ul");
+
+if (localStorage.getItem("toDos")){
+    toDoList = JSON.parse(localStorage.getItem("toDos"));
+}
+if (localStorage.getItem("arrayDone")){
+    haveDone = JSON.parse(localStorage.getItem("arrayDone"));
+}
+
 
 function createHtmlForToDo(){
 toDoContainer.innerHTML="";
+localStorage.setItem("toDos", JSON.stringify(toDoList));
+
 for(let i = 0; i < toDoList.length; i++){
     const toDos = document.createElement("li");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    toDos.appendChild(checkbox);
 
     toDoContainer.className = "toDoContainer";
     toDos.innerHTML= toDoList[i].task;
+
     
     toDoContainer.appendChild(toDos);
     listContainer.appendChild(toDoContainer);
 
     toDos.addEventListener("click", () => {
         haveDone.push(toDoList[i]);
-        console.log("klart: " +haveDone);
+        console.log("klart: " +toDoList[i]);
         toDoList.splice(i,1);
         createHtmlForToDo()
-        createHtmlForDone()
+        createHtmlForDone() 
         })
 }
 }
 createHtmlForToDo()
 
-const doneContainer = document.createElement("ul");
 
-function createHtmlForDone(){
+const doneContainer = document.createElement("ul");
+function createHtmlForDone(){  
     doneContainer.innerHTML="";
+    localStorage.setItem("arrayDone", JSON.stringify(haveDone));
     for(let i = 0; i < haveDone.length; i++){
         const done = document.createElement("li");
-
         doneContainer.className = "doneContainer";
         done.innerHTML = haveDone[i].task;
 
@@ -66,9 +74,21 @@ function createHtmlForDone(){
         done.addEventListener("click", ()=>{
             toDoList.push(haveDone[i]);
             haveDone.splice(i,1);
-           
+            
             createHtmlForToDo();
             createHtmlForDone();
         })
-    }
+    } 
 }
+createHtmlForDone();
+
+
+// // skapa ny task  
+// const inputBox = document.getElementById("inputBox").value;
+// const addToDoBtn = document.getElementById("btn");
+
+// addToDoBtn.addEventListener("click", ()=>{
+//     const newTask = document.createElement("li");
+//     newTask.innerText = inputBox.value;
+//     toDoContainer.appendChild(newTask);
+// })§

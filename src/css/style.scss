@@ -1,54 +1,96 @@
+@use "mixins";
+@use "variabless" as v;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Times New Roman', Times, serif;
   line-height: 1.8;
-  background-color: rgba(251, 207, 50, 0.829);
-
+  background-color: v.$bgColor;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-#toDoApp{
-  display: flex;
-  justify-content: center;
-  margin: 20px 0 10px 0;
-}
-#container{
-width: 85vw;
-background-color: antiquewhite;
-padding: 20px;
-margin-top: 20px;
-border-radius: 30px;
-height: 90vh;
-font-size: 1.1em;
-box-shadow: 3px 3px 15px;
-}
-.tasks{
-  font-size: 1.3em;
-  margin-top: 30px;
 }
 
 h1 {
   font-size: 2.5em;
   line-height: 1.1;
-  margin-bottom: 40px;
+  margin: 30px 0 40px 0;
+  text-align: center;
 }
 
-#section__Done{
-    color: antiquewhite;
-    text-decoration: line-through;
-}  
-ul{
-padding: 0px;
+#container {
+  width: 85vw;
+  background-color: v.$lightColor;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 30px;
+  height: 100vh;
+  font-size: 1.1em;
+  box-shadow: 3px 3px 15px;
+
+  @include mixins.desktop {
+    font-size: 1.3em;
+    width: 900px;
+  }
 }
-li{
-list-style: none;
-padding: 10px 15px 10px 20px;
-margin-bottom: 5px;
-background-color: rgb(231, 204, 172);
-border-radius: 20px;
+
+.tasks__paragraf {
+  font-size: 1.3em;
+  margin-top: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include mixins.tablet {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  &__input {
+    width: 70vw;
+    height: 45px;
+    border-radius: 15px;
+  }
+
+  &__btn {
+    width: 70vw;
+    height: 45px;
+    border-radius: 15px;
+    background-color: v.$darkColor;
+    margin-top: 5px;
+
+    @include mixins.tablet {
+      width: 100px;
+      margin-top: 0;
+    }
+  }
+}
+
+#tasks__done {
+  color: v.$lightColor;
+  text-decoration: line-through;
+}
+
+ul {
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+  padding: 10px 15px 10px 20px;
+  margin-bottom: 5px;
+  background-color: v.$darkColor;
+  border-radius: 20px;
+
+  @include mixins.desktop {
+    padding: 10px 15px 10px 40px;
+  }
 }

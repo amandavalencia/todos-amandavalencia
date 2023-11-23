@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo or not todo?</title>
-  </head>
-  <body>
-    <div id="container">
-      <div id="toDoApp"></div>
-     <p class="tasks"> Tasks to do: </p>
-     <section id="section__ToDo"></section>
-      <p class="tasks">Completed tasks:</p>
-     <section id="section__Done"></section>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo or not todo?</title>
+</head>
+
+<body>
+  <div id="container">
+    <div id="header"></div>
+
+    <div class="form">
+      <input class="inputBox form__input" type="text" placeholder="  Add new task...">
+      <button class="btn form__btn" id="btn">Add</button>
     </div>
-    <script type="module" src="/src/js/main.js"></script>
-  </body>
+    <div class="tasks">
+      <p class="tasks__paragraf"> Tasks to do: </p>
+      <section id="tasks__toDo"></section>
+      <p class="tasks__paragraf" id="done">Completed tasks:</p>
+      <section id="tasks__done"></section>
+    </div>
+  </div>
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+
 </html>
