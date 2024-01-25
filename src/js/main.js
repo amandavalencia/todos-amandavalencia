@@ -83,12 +83,14 @@ function createHtmlForDone(){
 createHtmlForDone();
 
 
-// // skapa ny task  
-// const inputBox = document.getElementById("inputBox").value;
-// const addToDoBtn = document.getElementById("btn");
+// skapa ny task  
+const addTaskDiv = document.getElementById("addNewTask");
+const addToDoBtn = document.getElementById("btn");
+const inputBox = document.getElementById("inputBox");
 
-// addToDoBtn.addEventListener("click", ()=>{
-//     const newTask = document.createElement("li");
-//     newTask.innerText = inputBox.value;
-//     toDoContainer.appendChild(newTask);
-// })§
+addToDoBtn.addEventListener("click", ()=>{
+    const inputValue = inputBox.value
+    const newTask = new Todo (true, inputValue) 
+    toDoList.push(newTask)
+    createHtmlForToDo()
+})
