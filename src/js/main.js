@@ -49,7 +49,6 @@ for(let i = 0; i < toDoList.length; i++){
 
     toDos.addEventListener("click", () => {
         haveDone.push(toDoList[i]);
-        console.log("klart: " +toDoList[i]);
         toDoList.splice(i,1);
         createHtmlForToDo()
         createHtmlForDone() 
@@ -71,26 +70,30 @@ function createHtmlForDone(){
         doneContainer.appendChild(done);
         listDoneContainer.appendChild(doneContainer);
 
-        done.addEventListener("click", ()=>{
-            toDoList.push(haveDone[i]);
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "deleteBtn";
+        deleteBtn.innerHTML = "x"
+        done.appendChild(deleteBtn);        
+        deleteBtn.addEventListener("click", ()=>{
             haveDone.splice(i,1);
-            
-            createHtmlForToDo();
             createHtmlForDone();
+            createHtmlForToDo()
         })
+
+
     } 
 }
 createHtmlForDone();
 
 
 // skapa ny task  
-const addTaskDiv = document.getElementById("addNewTask");
 const addToDoBtn = document.getElementById("btn");
 const inputBox = document.getElementById("inputBox");
 
-addToDoBtn.addEventListener("click", ()=>{
+addToDoBtn.addEventListener("keypress", ()=>{
     const inputValue = inputBox.value
     const newTask = new Todo (true, inputValue) 
     toDoList.push(newTask)
     createHtmlForToDo()
+    
 })
