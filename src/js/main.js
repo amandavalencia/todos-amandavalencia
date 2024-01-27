@@ -90,7 +90,7 @@ createHtmlForDone();
 const addToDoBtn = document.getElementById("btn");
 const inputBox = document.getElementById("inputBox");
 
-addToDoBtn.addEventListener("keypress", ()=>{
+addToDoBtn.addEventListener("click", ()=>{
     const inputValue = inputBox.value
     const newTask = new Todo (true, inputValue) 
     toDoList.push(newTask)
